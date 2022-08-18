@@ -20,7 +20,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String role; // role 의 종류에는 ROLE_USER, ROLE_ADMIN 있음
+    private String role; // role 의 종류에는 ROLE_USER, ROLE_ADMIN, ROLE_MANAGER 있음
     @CreationTimestamp
     private Timestamp createDate;
 }

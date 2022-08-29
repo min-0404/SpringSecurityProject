@@ -32,14 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll() // 위의 3가지 주소가 아니면 인증 없이 누구나 들어갈 수 있다고 설정
                 .and()
                 .formLogin()
-                .loginPage("/loginForm") // /user, /manager, /admin 에 접속하면 무조건 /login 페이지로 가도록 설정
-                .loginProcessingUrl("/login") // /login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 진행해줌 -> 따라서 컨트롤러에서 /login 주소 담당 매서드를 만들필요가 없음
-                .defaultSuccessUrl("/") // 로그인 성공하면 내가 처음에 원했던 주소로 이동시켜줌.
-                                        // ex) /user 접속하면 일단 /loginForm 페이지로 이동되고, 로그인 정보 입력하면 /login 컨트롤러 실행되고(물론 시큐리티가 자동으로 구현해둠)
+                .loginPage("/loginForm") // /user, /manager, /admin 에 접속하면 무조건 /loginForm 페이지로 가도록 설정
+                //                .loginProcessingUrl("/login") // /login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 진행해줌 -> 따라서 /login 담당하는 컨트롤러 매서드를 만들 필요가 없음
+                //                .defaultSuccessUrl("/") // 로그인 성공하면 내가 처음에 원했던 주소로 이동시켜줌.
+                //                                        // ex) /user 접속하면 일단 /loginForm 페이지로 이동되고, 로그인 정보 입력하면 /login 컨트롤러 실행되고(물론 시큐리티가 자동으로 구현해둠)
                                         // 로그인 성공하면 기존에 내가 접속하려고 했던 /user를 실행시켜줌
                 .and()
                 .oauth2Login() // oauth 설정
-                .loginPage("/loginForm")
+                .loginPage("/loginForm");
                 // 구글 로그인이 완료된 뒤 후처리가 필요함.
                 // 1. 코드받기(인증) 2. 엑세스토큰 받기(권한) 3. 사용자 프로필 정보를 가져와서 4. 그 정보를 토대로 회원가입 자동으로 진행
 

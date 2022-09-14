@@ -12,7 +12,7 @@ import java.util.Collection;
 // 로그인 완료되면, Security Session 이라는 공간을 만들어줌(=스프링 시큐리티가 제공하는 세션 저장 공간)
 // 이것을 "SecurityContextHolder' 라고 함
 // 이 스프링 세션에는 Authentication 타입의 오브젝트만 들어갈 수 있음
-// 이 Authentication 안에는 User 정보가 있어야함
+//// 이 Authentication 안에는 User 정보가 있어야함
 // 이 User 정보의 오브젝트 타입이 UserDetails 타입의 객체임
 // 정리: SecuritySession(=SecurityContextHolder) -> Authentication -> UserDetails
 // 결국 이러한 형태가 되어야함: SecuritySession(Authentication(UserDetails))
@@ -26,13 +26,12 @@ public class PrincipalDetails implements UserDetails { // PrincipalDetails 는 �
         this.user = user;
     }
 
-
     // 해당 유저의 권한(Role)을 리턴하는 곳
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Collection<GrantedAuthority> collect = new ArrayList<>(); // 그냥 Authentication 만 리턴해버리면 안되므로 collection 활용하자
-
+        // 시큐리티에서 username, password 제공하는 것처럼 role에 해당하는 것이 grantedAuthority
         collect.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
